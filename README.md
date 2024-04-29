@@ -25,5 +25,11 @@ todoListElement.innerHTML = '': med denna kod töms innehållet i todo-listan f�
 todoList.getTodos().forEach((todo, index) => { ... }): här används forEach() för att loopa igenom varje todo i todo-listan som returneras av todoList.getTodos(), till varje todo skapas ett li-element.
 const listItem = document.createElement('li'): här skapas ett nytt li-element för varje todo i listan.
 listItem.innerHTML = ... här byggs den sträng som representerar varje todo-element. jag har inkluderat en check box för att markera uppgiften är gjort eller ej, uppgiftens namn, prioritet och skapad datum samt radera-kanpp finns med. 
-const checkbox = listItem.querySelector(#todo${index}) as HTMLInputElement | null: 
+const checkbox = listItem.querySelector(#todo${index}) as HTMLInputElement | null: referensen till checkboxen hämtas för varje task, om checkbozen hittas, konverteras dess typ till HTMLInputElement annars sätts den till null.
+const removeButton = listItem.querySelector('.removeButton') as HTMLButtonElement | null: samma sak som ovan, refrensen till kanppen hämtas för att ta bort den uppgift man vill och typen konverteras till HTMLButtonElement.
+if (checkbox && removeButton) {...} i den här delen har jag händelsehanterare som för att lyssna på förändringarna när det gäller radera-knappen eller checkboxen, så när användaren klicker på knappen eller checkboxen då anropas motsvarande funktioner och efter att funktionen har körts renderas listan om.
+I slutet av funktionen har vi todoListElement.appendChild(listItem); som lägger till den skapade todo-elementet i todo-listan genom att lägga til 'li' till 'ul'
+
+Till slut har jag window.addEventListener('load', renderTodos);  det lysnnar på load alltså ser till om sidan har laddats. När sidan har laddats helt anropas 'renderTodos()' funktionen för att initialts rendera todo-listan på sidan. 
+
 
